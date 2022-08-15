@@ -32,30 +32,39 @@ class Human {
         this.disability = Boolean(newDisability);
     }
 
-    getInfo() {
-        const allInformation = {
-            height: this.height,
-            weight: this.weight,
-            name: this.name,
-            date: this.date,
-            gender: this.gender,
-            disability: this.disability
-        }
-    }
 } 
 
 class Builder extends Human {
-    constructor(height, weight, name, date, gender, disability, country, item, speed_of_work ) {
+    constructor(height, weight, name, date, gender, disability, country, item, speedOfWork) {
         super(height, weight, name, date, gender, disability)
 
         this.country = country;
         this.item = item;
-        this.speed_of_work = speed_of_work;
+        this.speedOfWork = speedOfWork;
     }
 
-    
-    
+    buildTower(squareMeters) {
+        let hour = (squareMeters * this.speedOfWork) / 60;
+        let day = hour / 24;
+        let week = day / 7;
+        let month = week / 4.5;
+        let year = month / 12;
+
+        if (day < 1) {
+            return `${Math.floor(hour)} hours.`;
+        } else if (day > 1 && week < 1) {
+            return `${Math.floor(day)} days ` + `${Math.floor(hour - (Math.floor(day) * 24))} hours.`;
+        } else if (week > 1 && month < 1) {
+            return `${Math.floor(week)} weeks ` + `${MAth.floor(day - (Math.floor(week) * 7))} days.` + `${Math.floor(hour - (Math.floor(day) * 24))} hours.`;
+        } else if (month > 1 && year < 1) {
+            return `${Math.floor(month)} months` + `${Math.floor(week - (Math.floor(month) * 4.5))} weeks` + `${Math.floor(day - (Math.floor(week) * 7))} days` + `${Math.floor(hour - (Math.floor(day) * 24))} hours.`;
+        } else if (year > 1) {
+            return `${Math.floor(year)} years` + `${Math.floor(month - (Math.floor(year) * 12))} months` + `${Math.floor(week - (Math.floor(month) * 4.5))} weeks` + `${Math.floor(day - (Math.floor(week) * 7))} days` + `${Math.floor(hour - (Math.floor(day) * 24))} hours.`;
+        }
+
+    }
 }
 
 const builderMan = new Builder(155, 100, `Sidron`, new Date(1991,11,11), `man`, true, `Ukraine`,[`axe`,`hammer`,`picker`], 30);
 console.log(builderMan);
+console.log(builderMan.buildTower(144444));

@@ -126,10 +126,10 @@
 
 // console.log(frontendDev.newCompany(
 //     {
-//         start: new Date(`2019,11,12`),
+//      start: new Date(`2019,11,12`),
 // 		end: new Date(`2022,11,10`),
 // 	    salaryPerMonth: 4300,
-//         position: `Senior`,
+//      position: `Senior`,
 // 		companyName: 'EPAM-USA',
 //     }
 // ))
